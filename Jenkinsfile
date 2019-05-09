@@ -12,8 +12,10 @@ pipeline {
     stages {
         stage('The stage') {
             steps {
-                env.DOCS_VERSION = sh (returnStdout: true, script: 'echo ${DOCS_VERSION:-$DEFAULT_DOCS_VERSION}').trim()
-                sh 'echo "The stage sees DOCS_VERSION=$DOCS_VERSION"'
+                script {
+                    env.DOCS_VERSION = sh (returnStdout: true, script: 'echo ${DOCS_VERSION:-$DEFAULT_DOCS_VERSION}').trim()
+                    sh 'echo "The stage sees DOCS_VERSION=$DOCS_VERSION"'
+                }
             }
         }
     }
