@@ -6,7 +6,7 @@ pipeline {
         SANE_JOB_NAME = "${env.JOB_BASE_NAME}".replace('.', '-').toLowerCase()
 
         // The docs version that we are updating.
-        DOCS_VERSION = "master"
+        DOCS_VERSION?="master"
     }
 
     stages {
