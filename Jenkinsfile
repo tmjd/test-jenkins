@@ -6,12 +6,13 @@ pipeline {
         SANE_JOB_NAME = "${env.JOB_BASE_NAME}".replace('.', '-').toLowerCase()
 
         // The docs version that we are updating.
-        DOCS_VERSION="${DOCS_VERSION:-master}"
+        DEFAULT_DOCS_VERSION="master"
     }
 
     stages {
         stage('The stage') {
             steps {
+                env.DOCS_VERSION = sh (returnStdout: true, script: 'echo ${DOCS_VERSION:-$DEFAULT_DOCS_VERSION}').trim()
                 sh 'echo "The stage sees DOCS_VERSION=$DOCS_VERSION"'
             }
         }
